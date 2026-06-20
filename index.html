@@ -1,0 +1,27 @@
+import random
+import time
+
+rewards = [
+    ("😭 꽝!", 30),
+    ("🍦 아이스크림", 25),
+    ("🍭 편의점 간식", 20),
+    ("⭐ 도장 3개 추가", 10),
+    ("🎁 인형뽑기 5천원", 8),
+    ("🛍️ 다이소 5천원", 5),
+    ("🎨 아트박스 쇼핑", 1.5),
+    ("👑 스페셜 보상", 0.5)
+]
+
+items = [r[0] for r in rewards]
+weights = [r[1] for r in rewards]
+
+print("🎰 보상 뽑기 중...")
+
+for i in range(10):
+    print(random.choice(items))
+    time.sleep(0.2)
+
+result = random.choices(items, weights=weights, k=1)[0]
+
+print("\n🎉 최종 결과 🎉")
+print(result)
