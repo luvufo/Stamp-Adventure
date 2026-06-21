@@ -2,69 +2,119 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>칭찬도장통장</title>
+  <title>칭찬 도장 상점</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #f4eaff;
+      font-family: Arial, sans-serif;
+      background: #fff7cf;
       text-align: center;
-      padding: 50px;
+      padding: 40px;
     }
     .box {
-      background: white;
-      border-radius: 24px;
-      padding: 40px;
-      max-width: 500px;
+      max-width: 520px;
       margin: auto;
-      box-shadow: 0 10px 30px #d8c2ff;
+      background: white;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
     button {
-      background: #b983ff;
-      color: white;
+      display: block;
+      width: 100%;
+      margin: 12px 0;
+      padding: 18px;
       border: none;
       border-radius: 20px;
-      padding: 15px 30px;
+      background: #ffd85c;
       font-size: 20px;
+      font-weight: bold;
       cursor: pointer;
     }
     #result {
-      margin-top: 30px;
-      font-size: 28px;
+      margin-top: 25px;
+      font-size: 24px;
       font-weight: bold;
+      color: #6b4b1f;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
   <div class="box">
-    <h1>💜 칭찬도장 랜덤 보상 💜</h1>
-    <p>버튼을 눌러 보상을 뽑아보세요!</p>
-    <button onclick="pickReward()">🎰 보상 뽑기</button>
-    <div id="result"></div>
+    <h1>🍮 칭찬 도장 상점 🎁</h1>
+    <p>도장을 모아서 원하는 보상으로 교환해요!</p>
+
+    <button onclick="showReward('5도장: 🍦 아이스크림 1개')">5도장</button>
+    <button onclick="showReward('10도장: 🍭 편의점 간식 3천원')">10도장</button>
+    <button onclick="showReward('15도장: 🎮 인형뽑기 5천원')">15도장</button>
+    <button onclick="showReward('20도장: 🛒 다이소 쇼핑 5천원')">20도장</button>
+    <button onclick="showReward('25도장: ☕ 카페 음료 + 디저트')">25도장</button>
+    <button onclick="showReward('30도장: 🎮 인형뽑기 1만원')">30도장</button>
+    <button onclick="showReward('35도장: 🎨 슬라임 또는 만들기 키트')">35도장</button>
+    <button onclick="showReward('40도장: 🛍️ 아트박스 쇼핑 1만원')">40도장</button>
+
+    <button onclick="random50()">50도장 랜덤뽑기</button>
+
+    <button onclick="showReward('60도장: 🎮 인형뽑기 2만원')">60도장</button>
+    <button onclick="showReward('70도장: 🎀 산리오 굿즈 1개 (2만원 이하)')">70도장</button>
+
+    <button onclick="random80()">80도장 랜덤박스</button>
+
+    <button onclick="showReward('90도장: 🧸 장난감 또는 문구 2만원')">90도장</button>
+
+    <button onclick="random95()">95도장 랜덤뽑기</button>
+
+    <button onclick="showReward('100도장: 👑 스페셜 데이 + 선물 (선물 3만원 이하)')">100도장</button>
+
+    <div id="result">결과가 여기에 나와요 💛</div>
   </div>
 
   <script>
-    const rewards = [
-      { name: "😭 꽝!", weight: 30 },
-      { name: "🍦 아이스크림", weight: 25 },
-      { name: "🍭 편의점 간식", weight: 20 },
-      { name: "⭐ 도장 3개 추가", weight: 10 },
-      { name: "🎁 인형뽑기 5천원", weight: 8 },
-      { name: "🛍️ 다이소 5천원", weight: 5 },
-      { name: "🎨 아트박스 쇼핑", weight: 1.5 },
-      { name: "👑 스페셜 보상", weight: 0.5 }
-    ];
+    function showReward(text) {
+      document.getElementById("result").innerText = "🎉 " + text;
+    }
 
-    function pickReward() {
-      const total = rewards.reduce((sum, item) => sum + item.weight, 0);
-      let random = Math.random() * total;
+    function pick(list) {
+      const index = Math.floor(Math.random() * list.length);
+      return list[index];
+    }
 
-      for (const reward of rewards) {
-        random -= reward.weight;
-        if (random <= 0) {
-          document.getElementById("result").innerText = reward.name;
-          return;
-        }
-      }
+    function random50() {
+      const rewards = [
+        "🍦 아이스크림 + 간식",
+        "🎮 인형뽑기 1만원 상당",
+        "🎨 만들기 재료",
+        "🛍️ 문구 랜덤 선물",
+        "🍭 편의점 간식 랜덤",
+        "🎀 작은 산리오 굿즈"
+      ];
+
+      showReward("50도장 랜덤뽑기 당첨! " + pick(rewards) + " / 꽝 없음");
+    }
+
+    function random80() {
+      const rewards = [
+        "🎁 랜덤박스 A: 산리오 소품",
+        "🎁 랜덤박스 B: 문구 세트",
+        "🎁 랜덤박스 C: 간식 + 장난감",
+        "🎁 랜덤박스 D: 만들기 키트",
+        "🎁 랜덤박스 E: 깜짝 선물"
+      ];
+
+      showReward("80도장 랜덤박스 당첨! " + pick(rewards) + " (2만원 이하)");
+    }
+
+    function random95() {
+      const rewards = [
+        "👑 대박 랜덤뽑기: 인형뽑기 3만원",
+        "🎀 대박 랜덤뽑기: 산리오 굿즈",
+        "🧸 대박 랜덤뽑기: 장난감",
+        "🛍️ 대박 랜덤뽑기: 원하는 상품",
+        "🎁 대박 랜덤뽑기: 랜덤박스",
+        "✨ 대박 랜덤뽑기: 최대 5만원 상당 선물"
+      ];
+
+      showReward("95도장 랜덤뽑기 당첨! " + pick(rewards));
     }
   </script>
 </body>
